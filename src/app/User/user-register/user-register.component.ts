@@ -37,7 +37,6 @@ export class UserRegisterComponent implements OnInit {
     public activeRoute: ActivatedRoute,
     private apiService: ApiServicesService,
 
-    // private dialogRef: MatDialogRef<UserRegisterComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.userReg = this.fb.group({
       fullname: ['', [Validators.required, Validators.maxLength(20)]],
@@ -70,8 +69,6 @@ export class UserRegisterComponent implements OnInit {
 
     this.activeRoute.params.subscribe((paramsId: any) => {
       this.employeeId = paramsId
-      // console.log(this.employeeId)
-
     })
 
     if (this.employeeId.id) {
@@ -85,11 +82,9 @@ export class UserRegisterComponent implements OnInit {
     this.apiService.getEmployeeDetails().subscribe({
       next: (res) => {
         this.data = res;
-        // console.log(this.data)
         this.data.forEach((items: any) => {
           if (items.id === Number(this.employeeId.id)) {
             this.employeeData = items;
-            // console.log(this.employeeData);
             this.userReg.patchValue(items)
             this.fetchJsonData();
           }
@@ -122,7 +117,6 @@ export class UserRegisterComponent implements OnInit {
 
     this.apiService.getStateData().subscribe((data) => {
       this.stateList = data;
-      // console.log(this.stateList)
       if (this.employeeData.selectedCountry) {
         this.filteredStates = [];
         this.stateList.forEach((items: any) => {
@@ -203,7 +197,6 @@ export class UserRegisterComponent implements OnInit {
       this.filteredCities = [];
     }
 
-    // Reset city dropdown and city array
     this.userReg.patchValue({ selectedCity: '' });
     this.city = [];
 
@@ -216,10 +209,9 @@ export class UserRegisterComponent implements OnInit {
       const formData = this.userReg.value;
       console.log(formData);
 
-      if (this.employeeId.id) { // If data is present, perform update
+      if (this.employeeId.id) { 
         console.log(this.data)
         const employeeId = this.employeeId.id; 
-        // console.log(employeeId)// Assuming this.data contains the employee data including ID
         this.httpClient.put(`https://retoolapi.dev/lcqe0N/empData/${employeeId}`, formData).subscribe({
           next: (val: any) => {
             alert("Employee Detail Updated");
@@ -230,7 +222,7 @@ export class UserRegisterComponent implements OnInit {
             alert("Failed to update employee details. Please try again.");
           }
         });
-      } else { // If no data, perform submission
+      } else {
         this.httpClient.post('https://retoolapi.dev/lcqe0N/empData', formData).subscribe({
           next: (data: any) => {
             alert("Registered Successfully");

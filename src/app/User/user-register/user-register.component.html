@@ -94,7 +94,6 @@
                             <mat-form-field appearance="outline">
                                 <mat-label>State</mat-label>
                                 <mat-select formControlName="selectedState" (selectionChange)="onStateChange($event)" >
-                                    <!-- (selectionChange)="onStateChange($event)" -->
                                     <mat-option *ngFor="let state of filteredStates"
                                         [value]="state.statename">{{state.statename}}</mat-option>
 
@@ -133,9 +132,7 @@
                                 <mat-error *ngIf="userReg.get('date')?.invalid && userReg.get('date')?.touched">
                                     Date is required
                                 </mat-error>
-                                <!-- <mat-error *ngIf="userReg.get('date')?.hasError('pattern')">
-                                    Invalid date format. Please use format: MM/DD/YYYY
-                                  </mat-error> -->
+                               
                             </mat-form-field>
                         </div>
                         <div class="col">
@@ -184,10 +181,7 @@
                             </div>
                             <div class="col">
                                 <button mat-raised-button color="primary" [disabled]="userReg.invalid" type="submit" >{{data.id? 'Update':'Submit'}}</button> 
-                                <!-- <button *ngIf="data" mat-raised-button color="warn" [disabled]="userReg.invalid" type="button" (click)="updateDetails()">
-                                    Update
-                                  </button>  -->
-                                <!-- /* {{data? 'Update':'Submit'}} */ -->
+                                
                             </div>
                         </div>
                     </div>
