@@ -13,9 +13,6 @@ import { ApiServicesService } from 'src/app/services/api-services.service';
 })
 export class UserReportComponent {
 
-
-
-
   displayedColumns: string[] = ['id', 'empname', 'date', 'mobnum', 'Gender', 'address', 'selectedCountry', 'selectedState', 'selectedCity', 'action', 'delete'];
 
   public empDetails: any = [];
@@ -23,7 +20,6 @@ export class UserReportComponent {
 
   dataSource!: MatTableDataSource<any>;
   router: any;
-  // gender: any;
 
   reportForm: FormGroup;
   dataCopy: any;
@@ -79,17 +75,14 @@ export class UserReportComponent {
 
     this.JsonData();
 
-    // this.getAllCountryValues();
   }
 
   getEmployeDetails() {
     this.apiService.getEmployeeDetails().subscribe({
       next: (res) => {
         this.dataSource = new MatTableDataSource(res);
-        // console.log(this.dataSource);
 
         this.dataCopy = res;
-        // console.log(this.dataCopy)
 
       },
       error: console.log,
@@ -146,7 +139,6 @@ export class UserReportComponent {
     console.log(selectedGender);
 
     this.genderData = this.dataCopy.filter((item: { Gender: string; }) => item.Gender.toLowerCase() === selectedGender);
-    // Assuming filteredData is the result you want to set back to dataSource
     this.dataSource = this.genderData;
   }
 
@@ -192,10 +184,8 @@ export class UserReportComponent {
   editEmployee(data: any) {
 
     this.routing.navigateByUrl(`userReport-edit/${data.id}`).then(() => {
-      // Navigation is successful
       this.getEmployeDetails();
     }).catch(error => {
-      // Handle navigation error if needed
       console.error('Navigation error:', error);
     });
 

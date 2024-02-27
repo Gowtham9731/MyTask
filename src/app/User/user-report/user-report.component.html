@@ -24,7 +24,6 @@
                     <mat-form-field appearance="outline">
                         <mat-label>Sort By Gender</mat-label>
                         <mat-select formControlName="genderName" (selectionChange)="genderFilter()">
-                            <!-- <mat-option *ngFor="let gender of this.AllGenderValues"  [value]="gender.name">{{gender.name}}</mat-option>                       -->
                             <mat-option value="male">Male</mat-option>
                             <mat-option value="female">Female</mat-option>
                             <mat-option value="others">Others</mat-option>
@@ -121,12 +120,7 @@
 
             <tr mat-header-row class="header" *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-<p>dummy</p>
-            <!-- <mat-paginator [length]="100"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              aria-label="Select page">
-</mat-paginator> -->
+
         </table>
     </div>
 </div>
